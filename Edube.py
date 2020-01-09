@@ -20,21 +20,25 @@ while not finishProgram:
     while not finishEnteringNumbers:
         try:
             if finishEnteringNumbers == False:
-                numberToCalculateCaption = "Insert a number to calculate:"
+                numberToCalculateCaption = "Insert a number to calculate: "
 
                 if operation == "-" and rounds == 0:
-                    numberToCalculateCaption = "Insert minuend to calculate:"
+                    numberToCalculateCaption = "Insert minuend to calculate: "
                 elif operation == "-" and rounds > 0:
-                    numberToCalculateCaption = "Insert subtracting to calculate:"
+                    numberToCalculateCaption = "Insert subtracting to calculate: "
                 elif operation == "/" and rounds == 0:
-                    numberToCalculateCaption = "Insert dividend to calculate:"
-                elif operation == "/" and rounds > 0:
-                    numberToCalculateCaption = "Insert divider to calculate:"
+                    numberToCalculateCaption = "Insert dividend to calculate: "
+                elif operation == "/" and rounds > 0:                  
+                    numberToCalculateCaption = "Insert divider to calculate: "
 
                 userInputToCalculate = input(numberToCalculateCaption)
 
                 if userInputToCalculate != "F":
-                    numberToCalculate = float(userInputToCalculate)
+                    numberToCalculate = float(userInputToCalculate)                    
+
+            if operation == "/" and rounds == 1 and numberToCalculate == 0:
+              print("Can't divide by 0")                                          
+              continue
 
             if operation == "-" or operation == "/":                
                 rounds += 1
