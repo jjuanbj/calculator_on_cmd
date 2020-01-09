@@ -4,17 +4,17 @@ operationHasValue = False
 while not finishProgram: 
     if operationHasValue == False:
         operation = ""
-        while operation != "+" and operation != "-" and operation != "*" and operation != "/":
+        while operation not in ("+", "-", "*", "/"):
             operation = input("What do you want to do? Sum(+) Subt(-) Mult(*) Div(/) ")
         else:
             operationHasValue = True
 
-        if operation == "+" or operation == "*":
-            print("Press 'F' when you finished entering numbers...")        
+        if operation in ("+", "*"):
+            print("Press 'F' or Enter button when you finished entering numbers...")        
 
     finishEnteringNumbers = False
     total = 0
-    numberList = []    
+    numberList = []  
     rounds = 0
 
     while not finishEnteringNumbers:
@@ -33,19 +33,19 @@ while not finishProgram:
 
                 userInputToCalculate = input(numberToCalculateCaption)
 
-                if userInputToCalculate != "F":
+                if userInputToCalculate not in ("F", "f", ""):
                     numberToCalculate = float(userInputToCalculate)                    
 
             if operation == "/" and rounds == 1 and numberToCalculate == 0:
               print("Can't divide by 0")                                          
               continue
 
-            if operation == "-" or operation == "/":                
+            if operation in ("-", "/"):                
                 rounds += 1
                 if rounds >= 2:
                     finishEnteringNumbers = True                
 
-            if userInputToCalculate == "F":
+            if userInputToCalculate in ("F", "f", ""):
                 finishEnteringNumbers = True        
             elif isinstance(numberToCalculate, float):
                 numberList.append(numberToCalculate)    
@@ -71,15 +71,19 @@ while not finishProgram:
     elif operation == "/":
         total = numberList[0] / numberList[1]
 
-    print("Result is: ", total)    
+    if (total).is_integer():
+      print("Result is: ", int(total))
+    else:
+      print("Result is: ", total)    
     print()
 
     anotherOperation = ""
-    while anotherOperation != "Y" and anotherOperation != "N":
-        anotherOperation = input("Want another operation? (Y) Yes, (N) No:")
+    while anotherOperation not in ("Y", "N", "y", "n"):
+        anotherOperation = input("Want another operation? (Y) Yes, (N) No: ")
 
-    if anotherOperation == "Y":
+    if anotherOperation in ("Y", "y"):
         operationHasValue = False
         continue
-    elif anotherOperation == "N":
+    elif anotherOperation in ("N", "n"):
+        print("Bye!")
         finishProgram = True
